@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodingServices.co.in – Academic & Document Support Services</title>
+<meta name="description" content="Professional plagiarism analysis, AI detection reports, proofreading, formatting, citation correction and language editing for researchers and academics worldwide.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+  <style>
+/* ─── TOKENS ─────────────────────────────────────── */
+:root {
+  --navy:      #0b1830;
+  --navy-mid:  #152545;
+  --navy-light:#1e3560;
+  --gold:      #c8a84b;
+  --gold-lt:   #e2c97a;
+  --gold-pale: #f5edd6;
+  --cream:     #faf8f3;
+  --white:     #ffffff;
+  --text:      #1e1e1e;
+  --muted:     #666;
+  --border:    #e4dfd5;
+  --shadow:    0 8px 40px rgba(11,24,48,0.10);
+}
+
+/* ─── RESET ──────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans', sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+a { text-decoration:none; color:inherit; }
+img { display:block; max-width:100%; }
+
+/* ─── SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--cream); }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
+
+/* ─── NAV ────────────────────────────────────────── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5%;
+  background: rgba(11,24,48,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,168,75,0.15);
+  transition: background 0.3s;
+}
+.logo-wrap { display:flex; align-items:center; gap:10px; }
+.logo-icon {
+  width:36px; height:36px; background:var(--gold);
+  border-radius:6px; display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-weight:700; font-size:1.1rem; color:var(--navy);
+}
+.logo-text { font-family:'Cormorant Garamond',serif; color:var(--white); font-size:1.18rem; font-weight:600; letter-spacing:0.3px; }
+.logo-text span { color:var(--gold); }
+
+.nav-links { display:flex; gap:32px; list-style:none; }
+.nav-links a { color:rgba(255,255,255,0.72); font-size:0.86rem; font-weight:500; letter-spacing:0.2px; transition:color 0.2s; position:relative; padding-bottom:2px; }
+.nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:1px; background:var(--gold); transition:width 0.25s; }
+.nav-links a:hover { color:#fff; }
+.nav-links a:hover::after { width:100%; }
+
+.nav-cta {
+  background:var(--gold); color:var(--navy); padding:9px 22px;
+  border-radius:5px; font-size:0.84rem; font-weight:600; letter-spacing:0.3px;
+  transition:background 0.2s, transform 0.15s;
+}
+.nav-cta:hover { background:var(--gold-lt); transform:translateY(-1px); }
+
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger span { width:24px; height:2px; background:#fff; border-radius:2px; transition:0.3s; }
+
+/* ─── HERO ───────────────────────────────────────── */
+.hero {
+  min-height:100vh;
+  background: var(--navy);
+  display:flex; align-items:center;
+  padding: 100px 5% 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Decorative rings */
+.hero-ring {
+  position:absolute; border-radius:50%;
+  border: 1px solid rgba(200,168,75,0.12);
+  pointer-events:none;
+}
+.ring-1 { width:600px; height:600px; top:-120px; right:-120px; }
+.ring-2 { width:900px; height:900px; top:-280px; right:-320px; border-color:rgba(200,168,75,0.06); }
+.ring-3 { width:320px; height:320px; bottom:-60px; left:8%; border-color:rgba(200,168,75,0.08); }
+
+/* Grid dots texture */
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: radial-gradient(rgba(200,168,75,0.08) 1px, transparent 1px);
+  background-size:36px 36px;
+  pointer-events:none;
+}
+
+/* Gold gradient glow */
+.hero-glow {
+  position:absolute; top:10%; right:5%;
+  width:480px; height:480px;
+  background: radial-gradient(circle, rgba(200,168,75,0.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.hero-inner { max-width:1100px; margin:0 auto; width:100%; display:grid; grid-template-columns:1.1fr 1fr; gap:64px; align-items:center; }
+
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(200,168,75,0.12); border:1px solid rgba(200,168,75,0.25);
+  color:var(--gold-lt); padding:6px 14px; border-radius:20px;
+  font-size:0.78rem; font-weight:500; letter-spacing:0.5px; text-transform:uppercase;
+  margin-bottom:24px;
+  animation: fadeUp 0.6s ease both;
+}
+.badge-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; animation:pulse 2s infinite; }
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.4);} }
+
+.hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight:700;
+  color:#fff;
+  line-height:1.15;
+  margin-bottom:22px;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+.hero h1 em { color:var(--gold); font-style:italic; }
+
+.hero-desc {
+  font-size:1rem; color:rgba(255,255,255,0.65); line-height:1.8;
+  margin-bottom:36px; max-width:500px;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-actions {
+  display:flex; gap:14px; flex-wrap:wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.btn-primary {
+  background:var(--gold); color:var(--navy);
+  padding:14px 30px; border-radius:6px;
+  font-weight:600; font-size:0.92rem; letter-spacing:0.3px;
+  transition:background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow:0 4px 20px rgba(200,168,75,0.3);
+}
+.btn-primary:hover { background:var(--gold-lt); transform:translateY(-2px); box-shadow:0 8px 28px rgba(200,168,75,0.4); }
+
+.btn-outline {
+  border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.85);
+  padding:14px 30px; border-radius:6px;
+  font-weight:500; font-size:0.92rem;
+  transition:border-color 0.2s, color 0.2s, background 0.2s;
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); background:rgba(200,168,75,0.06); }
+
+.hero-stats {
+  display:flex; gap:32px; margin-top:44px;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+.stat-item { }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:700; color:#fff; line-height:1; }
+.stat-num span { color:var(--gold); }
+.stat-label { font-size:0.78rem; color:rgba(255,255,255,0.45); margin-top:4px; letter-spacing:0.3px; }
+
+/* Hero visual card */
+.hero-visual { animation: fadeUp 0.8s 0.2s ease both; }
+
+.hero-card {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+  padding:28px;
+  backdrop-filter:blur(8px);
+}
+.card-header {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:20px; padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.card-icon { width:40px; height:40px; background:var(--gold); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
+.card-title { font-family:'Cormorant Garamond',serif; color:#fff; font-size:1.05rem; font-weight:600; }
+.card-sub { font-size:0.78rem; color:rgba(255,255,255,0.4); }
+
+.service-list { display:flex; flex-direction:column; gap:10px; }
+.service-item {
+  display:flex; align-items:center; gap:12px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px; padding:12px 14px;
+  transition:background 0.2s, border-color 0.2s;
+  cursor:default;
+}
+.service-item:hover { background:rgba(200,168,75,0.07); border-color:rgba(200,168,75,0.2); }
+.si-dot { width:8px; height:8px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+.si-text { font-size:0.88rem; color:rgba(255,255,255,0.75); }
+.si-badge {
+  margin-left:auto; background:rgba(200,168,75,0.15); color:var(--gold-lt);
+  font-size:0.7rem; padding:2px 8px; border-radius:10px; font-weight:500;
+}
+
+/* ─── TRUST STRIP ────────────────────────────────── */
+.trust-strip {
+  background: var(--navy-mid);
+  border-top:1px solid rgba(200,168,75,0.1);
+  border-bottom:1px solid rgba(200,168,75,0.1);
+  padding:20px 5%;
+  overflow:hidden;
+}
+.trust-inner { display:flex; gap:48px; justify-content:center; flex-wrap:wrap; }
+.trust-item { display:flex; align-items:center; gap:10px; white-space:nowrap; }
+.trust-item .ti-icon { font-size:1.1rem; }
+.trust-item span { font-size:0.84rem; color:rgba(255,255,255,0.6); font-weight:500; }
+.trust-item strong { color:var(--gold-lt); }
+
+/* ─── SECTION SHARED ─────────────────────────────── */
+section { padding:88px 5%; }
+.section-label {
+  display:inline-block; background:var(--gold-pale); color:var(--gold);
+  font-size:0.72rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px; margin-bottom:14px;
+}
+.section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:14px; }
+.section-title em { color:var(--gold); font-style:italic; }
+.section-sub { font-size:0.95rem; color:var(--muted); line-height:1.8; max-width:560px; }
+.gold-rule { width:48px; height:3px; background:var(--gold); border-radius:2px; margin:16px 0 32px; }
+
+/* ─── SERVICES ───────────────────────────────────── */
+.services-section { background:var(--white); }
+.services-head { text-align:center; margin-bottom:52px; }
+.services-head .section-sub { margin:0 auto; }
+.services-head .gold-rule { margin:16px auto 0; }
+
+.services-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; max-width:1100px; margin:0 auto; }
+
+.svc-card {
+  background:var(--cream); border:1px solid var(--border);
+  border-radius:12px; padding:28px 26px;
+  transition:transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  position:relative; overflow:hidden;
+}
+.svc-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--gold-lt));
+  transform:scaleX(0); transform-origin:left; transition:transform 0.3s;
+}
+.svc-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(11,24,48,0.10); border-color:rgba(200,168,75,0.3); }
+.svc-card:hover::before { transform:scaleX(1); }
+
+.svc-icon { font-size:2rem; margin-bottom:16px; }
+.svc-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--navy); margin-bottom:10px; }
+.svc-card p { font-size:0.88rem; color:var(--muted); line-height:1.75; }
+.svc-tag { display:inline-block; background:var(--gold-pale); color:var(--gold); font-size:0.72rem; font-weight:600; padding:3px 10px; border-radius:10px; margin-top:14px; letter-spacing:0.3px; }
+
+/* ─── WHY US ─────────────────────────────────────── */
+.why-section { background:var(--cream); }
+.why-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+
+.why-visual { position:relative; }
+.why-bg-card {
+  background:var(--navy); border-radius:16px; padding:36px;
+  position:relative; overflow:hidden;
+}
+.why-bg-card::after {
+  content:''; position:absolute; inset:0;
+  background: radial-gradient(circle at 80% 20%, rgba(200,168,75,0.08) 0%, transparent 60%);
+}
+.why-quote {
+  font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic;
+  color:rgba(255,255,255,0.85); line-height:1.6; margin-bottom:20px; position:relative; z-index:1;
+}
+.why-quote::before { content:'"'; font-size:3rem; color:var(--gold); line-height:0; vertical-align:-0.4em; margin-right:4px; }
+.why-author { font-size:0.82rem; color:rgba(255,255,255,0.4); position:relative; z-index:1; }
+
+.why-float {
+  position:absolute; bottom:-20px; right:-16px;
+  background:#fff; border:1px solid var(--border);
+  border-radius:10px; padding:14px 18px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1);
+  display:flex; align-items:center; gap:10px;
+}
+.wf-num { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; color:var(--navy); line-height:1; }
+.wf-label { font-size:0.78rem; color:var(--muted); }
+
+.why-list { display:flex; flex-direction:column; gap:20px; margin-top:8px; }
+.why-item { display:flex; gap:16px; align-items:flex-start; }
+.wi-icon {
+  width:44px; height:44px; background:var(--navy); border-radius:10px;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;
+}
+.wi-text h4 { font-size:0.95rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.wi-text p { font-size:0.87rem; color:var(--muted); line-height:1.7; }
+
+/* ─── PROCESS ────────────────────────────────────── */
+.process-section { background:var(--navy); }
+.process-section .section-title { color:#fff; }
+.process-section .section-sub { color:rgba(255,255,255,0.55); }
+.process-section .section-label { background:rgba(200,168,75,0.15); }
+
+.process-steps-wrap { max-width:900px; margin:0 auto; position:relative; }
+.process-steps-wrap::before {
+  content:''; position:absolute; left:28px; top:40px; bottom:40px;
+  width:1px; background:rgba(200,168,75,0.2);
+}
+.process-step { display:flex; gap:28px; margin-bottom:36px; align-items:flex-start; }
+.ps-num {
+  width:56px; height:56px; border-radius:50%;
+  background:rgba(200,168,75,0.12); border:1px solid rgba(200,168,75,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700;
+  color:var(--gold); flex-shrink:0; position:relative; z-index:1;
+}
+.ps-content { padding-top:10px; }
+.ps-content h3 { font-size:1rem; font-weight:600; color:#fff; margin-bottom:6px; }
+.ps-content p { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.75; }
+
+/* ─── TESTIMONIALS ───────────────────────────────── */
+.testi-section { background:var(--white); }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+.testi-card {
+  background:var(--cream); border:1px solid var(--border);
+  border-radius:12px; padding:28px;
+  position:relative;
+}
+.testi-stars { color:var(--gold); font-size:0.85rem; margin-bottom:14px; letter-spacing:2px; }
+.testi-text { font-size:0.9rem; color:var(--muted); line-height:1.8; font-style:italic; margin-bottom:20px; }
+.testi-author { display:flex; align-items:center; gap:12px; }
+.ta-avatar {
+  width:38px; height:38px; border-radius:50%;
+  background:var(--navy); display:flex; align-items:center; justify-content:center;
+  font-family:'Cormorant Garamond',serif; font-weight:700; color:var(--gold); font-size:1rem;
+}
+.ta-name { font-size:0.85rem; font-weight:600; color:var(--navy); }
+.ta-role { font-size:0.75rem; color:var(--muted); }
+
+/* ─── CTA ────────────────────────────────────────── */
+.cta-section {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  text-align:center; position:relative; overflow:hidden;
+}
+.cta-section::before {
+  content:''; position:absolute; inset:0;
+  background-image:radial-gradient(rgba(200,168,75,0.06) 1px, transparent 1px);
+  background-size:32px 32px;
+}
+.cta-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3rem); font-weight:700; color:#fff; margin-bottom:14px; position:relative; z-index:1; }
+.cta-section p { color:rgba(255,255,255,0.6); font-size:0.95rem; max-width:480px; margin:0 auto 32px; position:relative; z-index:1; }
+.cta-section .btn-primary { position:relative; z-index:1; }
+
+/* ─── POLICIES STRIP ─────────────────────────────── */
+.policies-strip { background:var(--cream); padding:56px 5%; }
+.policies-strip h3 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--navy); text-align:center; margin-bottom:28px; }
+.policies-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; max-width:1000px; margin:0 auto; }
+.policy-card {
+  background:#fff; border:1px solid var(--border); border-radius:10px;
+  padding:20px 18px; text-align:center; transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.policy-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:0 6px 20px rgba(200,168,75,0.12); }
+.pc-icon { font-size:1.6rem; }
+.pc-title { font-size:0.88rem; font-weight:600; color:var(--navy); }
+.pc-sub { font-size:0.76rem; color:var(--muted); }
+.pc-arrow { font-size:0.75rem; color:var(--gold); margin-top:4px; opacity:0; transition:opacity 0.2s; }
+.policy-card:hover .pc-arrow { opacity:1; }
+
+/* ─── FOOTER ─────────────────────────────────────── */
+footer {
+  background:var(--navy);
+  padding:56px 5% 28px;
+}
+.footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:48px; max-width:1100px; margin:0 auto 40px; }
+.ft-brand .logo-text { font-size:1.25rem; margin-bottom:14px; display:block; }
+.ft-brand p { font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.8; max-width:280px; }
+.ft-col h4 { font-size:0.8rem; font-weight:600; color:var(--gold-lt); letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; }
+.ft-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.ft-col ul li a { font-size:0.85rem; color:rgba(255,255,255,0.5); transition:color 0.2s; }
+.ft-col ul li a:hover { color:var(--gold-lt); }
+.footer-bottom {
+  max-width:1100px; margin:0 auto;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:24px;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+}
+.footer-bottom p { font-size:0.8rem; color:rgba(255,255,255,0.35); }
+.footer-bottom a { color:var(--gold); font-size:0.8rem; }
+
+/* ─── ANIMATIONS ─────────────────────────────────── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ─── MOBILE NAV ─────────────────────────────────── */
+.mobile-menu {
+  display:none; position:fixed; top:68px; left:0; right:0; z-index:199;
+  background:var(--navy); padding:24px 5%;
+  border-bottom:1px solid rgba(200,168,75,0.15);
+  flex-direction:column; gap:16px;
+}
+.mobile-menu a { color:rgba(255,255,255,0.8); font-size:0.95rem; font-weight:500; }
+.mobile-menu.open { display:flex; }
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+@media(max-width:960px) {
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  .testi-grid { grid-template-columns:1fr 1fr; }
+  .why-inner { grid-template-columns:1fr; }
+  .why-visual { display:none; }
+  .footer-top { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:768px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .nav-links, .nav-cta { display:none; }
+  .hamburger { display:flex; }
+  .hero { min-height:auto; padding:100px 5% 60px; }
+  .hero-stats { gap:24px; }
+  .services-grid { grid-template-columns:1fr; }
+  .testi-grid { grid-template-columns:1fr; }
+  .footer-top { grid-template-columns:1fr; gap:28px; }
+  .process-steps-wrap::before { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="logo-wrap">
+    <div class="logo-icon">CS</div>
+    <span class="logo-text">Coding<span>Services</span>.co.in</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="contact-us.html">Contact</a></li>
+  </ul>
+  <a href="contact-us.html" class="nav-cta nav-links">Get Started</a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#why-us" onclick="toggleMenu()">Why Us</a>
+  <a href="#process" onclick="toggleMenu()">Process</a>
+  <a href="contact-us.html">Contact</a>
+  <a href="contact-us.html" style="color:var(--gold);font-weight:600;">Get Started →</a>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-ring ring-1"></div>
+  <div class="hero-ring ring-2"></div>
+  <div class="hero-ring ring-3"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Trusted by Researchers Worldwide
+      </div>
+      <h1>
+        Academic &amp; Document<br>
+        Support <em>Redefined</em>
+      </h1>
+      <p class="hero-desc">
+        Professional plagiarism reports, AI detection, proofreading, formatting, citation correction, and language editing — delivered digitally to international clients with precision and care.
+      </p>
+      <div class="hero-actions">
+        <a href="contact-us.html" class="btn-primary">Start Your Order →</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Digital Delivery</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24<span>h</span></div>
+          <div class="stat-label">Avg Turnaround</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">50<span>+</span></div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div>
+            <div class="card-title">Our Service Suite</div>
+            <div class="card-sub">7 specialist services available</div>
+          </div>
+        </div>
+        <div class="service-list">
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Plagiarism Analysis Report</span><span class="si-badge">PDF</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">AI Writing Detection Report</span><span class="si-badge">PDF</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Proofreading &amp; Grammar</span><span class="si-badge">DOCX</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Formatting &amp; Layout</span><span class="si-badge">DOCX</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Citation Correction</span><span class="si-badge">DOCX</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Language Editing</span><span class="si-badge">DOCX</span></div>
+          <div class="service-item"><span class="si-dot"></span><span class="si-text">Document Quality Review</span><span class="si-badge">DOCX</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRUST STRIP ────────────────────────────────── -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="ti-icon">🔒</span><span><strong>Confidential</strong> — Your documents stay private</span></div>
+    <div class="trust-item"><span class="ti-icon">🌍</span><span><strong>International</strong> — We serve clients globally</span></div>
+    <div class="trust-item"><span class="ti-icon">⚡</span><span><strong>Fast Delivery</strong> — Express options available</span></div>
+    <div class="trust-item"><span class="ti-icon">💳</span><span><strong>Secure Payments</strong> — International gateways supported</span></div>
+    <div class="trust-item"><span class="ti-icon">🔄</span><span><strong>Free Revisions</strong> — Within 7 days of delivery</span></div>
+  </div>
+</div>
+
+<!-- ─── SERVICES ───────────────────────────────────── -->
+<section class="services-section" id="services">
+  <div class="services-head reveal">
+    <span class="section-label">What We Offer</span>
+    <h2 class="section-title">Complete Academic <em>Document</em> Support</h2>
+    <p class="section-sub">From originality checks to polished, publication-ready manuscripts — we cover every stage of your document's journey.</p>
+    <div class="gold-rule"></div>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card reveal">
+      <div class="svc-icon">🔍</div>
+      <h3>Plagiarism Analysis Report</h3>
+      <p>Comprehensive originality analysis using industry-leading tools. Receive a detailed report identifying similarity scores and source references.</p>
+      <span class="svc-tag">Delivered in 24–48 hrs</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon">🤖</div>
+      <h3>AI Writing Detection Report</h3>
+      <p>Identify AI-generated content within your documents with a thorough detection report suitable for academic and editorial compliance.</p>
+      <span class="svc-tag">Delivered in 24–48 hrs</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon">✏️</div>
+      <h3>Proofreading &amp; Editing</h3>
+      <p>Meticulous grammar, spelling, punctuation, and clarity correction to ensure your writing is error-free and professional.</p>
+      <span class="svc-tag">2–3 Business Days</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon">📐</div>
+      <h3>Formatting &amp; Layout</h3>
+      <p>Expert formatting in APA, MLA, Chicago, IEEE, Vancouver, and more. Consistent headings, margins, tables, and figure captions.</p>
+      <span class="svc-tag">2–4 Business Days</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon">📚</div>
+      <h3>Citation Correction</h3>
+      <p>Accurate in-text citation and reference list correction across all major citation styles to meet journal or institution standards.</p>
+      <span class="svc-tag">2–4 Business Days</span>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-icon">🌐</div>
+      <h3>Language Editing</h3>
+      <p>Native-level English refinement for non-native authors — improving fluency, tone, academic register, and overall readability.</p>
+      <span class="svc-tag">3–5 Business Days</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY US ──────────────────────────────────────── -->
+<section class="why-section" id="why-us">
+  <div class="why-inner">
+    <div class="why-visual reveal">
+      <div class="why-bg-card">
+        <div class="why-quote">
+          Precision, confidentiality, and speed — the three pillars of every service we deliver to researchers around the globe.
+        </div>
+        <div class="why-author">— CodingServices.co.in</div>
+        <div class="why-float">
+          <div>
+            <div class="wf-num">50+</div>
+            <div class="wf-label">Countries Served</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="section-label reveal">Why Choose Us</span>
+      <h2 class="section-title reveal">Built for <em>Researchers</em>,<br>Trusted by Academics</h2>
+      <div class="gold-rule reveal"></div>
+      <div class="why-list">
+        <div class="why-item reveal">
+          <div class="wi-icon">🔒</div>
+          <div class="wi-text">
+            <h4>Strict Confidentiality</h4>
+            <p>Your documents are never shared or stored beyond 30 days. Every file is handled under strict non-disclosure protocols.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="wi-icon">⚡</div>
+          <div class="wi-text">
+            <h4>Fast &amp; Reliable Turnaround</h4>
+            <p>Standard and express delivery options across all services. We notify you immediately if any delay is anticipated.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="wi-icon">🌍</div>
+          <div class="wi-text">
+            <h4>International Payment Support</h4>
+            <p>Seamless payment processing for overseas clients in multiple currencies through secure, trusted gateways.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="wi-icon">🔄</div>
+          <div class="wi-text">
+            <h4>Free Revision Guarantee</h4>
+            <p>Not satisfied? Request a free revision within 7 days of delivery. We are committed to delivering to your agreed scope.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROCESS ─────────────────────────────────────── -->
+<section class="process-section" id="process">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:52px;">
+      <span class="section-label reveal">How It Works</span>
+      <h2 class="section-title reveal">Simple 4-Step <em>Process</em></h2>
+      <p class="section-sub reveal" style="margin:0 auto;">From order to delivery — a seamless, transparent workflow designed for busy researchers.</p>
+      <div class="gold-rule reveal" style="margin:16px auto 0;"></div>
+    </div>
+    <div class="process-steps-wrap">
+      <div class="process-step reveal">
+        <div class="ps-num">01</div>
+        <div class="ps-content">
+          <h3>Place Your Order</h3>
+          <p>Fill out our contact form with your requirements, document type, preferred service, and deadline. We'll confirm your order within a few hours.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="ps-num">02</div>
+        <div class="ps-content">
+          <h3>Submit Your Document &amp; Pay</h3>
+          <p>Upload your document securely and complete payment through our international payment gateway. We support clients from over 50 countries.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="ps-num">03</div>
+        <div class="ps-content">
+          <h3>We Get to Work</h3>
+          <p>Our specialists process your document with care. You'll receive a progress update and any clarifications needed to deliver the best result.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="ps-num">04</div>
+        <div class="ps-content">
+          <h3>Receive Your Deliverable</h3>
+          <p>Your completed report or edited document is delivered digitally to your email — on time, every time. Request revisions within 7 days if needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ────────────────────────────────── -->
+<section class="testi-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-label reveal">Client Feedback</span>
+      <h2 class="section-title reveal">What Our <em>Clients</em> Say</h2>
+      <div class="gold-rule reveal" style="margin:16px auto 0;"></div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The plagiarism report was thorough and delivered ahead of schedule. My thesis was accepted without any issues. Highly professional service."</p>
+        <div class="testi-author">
+          <div class="ta-avatar">A</div>
+          <div><div class="ta-name">Ahmed R.</div><div class="ta-role">PhD Candidate — UAE</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Their language editing transformed my paper from passable to publication-ready. The team understood academic tone perfectly."</p>
+        <div class="testi-author">
+          <div class="ta-avatar">S</div>
+          <div><div class="ta-name">Soo-Jin L.</div><div class="ta-role">Researcher — South Korea</div></div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Fast, confidential, and accurate citation correction. I've used them for three papers now. The payment process was smooth even from Canada."</p>
+        <div class="testi-author">
+          <div class="ta-avatar">M</div>
+          <div><div class="ta-name">Maria C.</div><div class="ta-role">Academic Writer — Canada</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─────────────────────────────────────────── -->
+<section class="cta-section">
+  <h2 class="reveal">Ready to Elevate Your <em style="color:var(--gold-lt);font-style:italic;">Document?</em></h2>
+  <p class="reveal">Submit your order today and receive a professional digital deliverable within your deadline.</p>
+  <a href="contact-us.html" class="btn-primary reveal">Contact Us &amp; Get Started →</a>
+</section>
+
+<!-- ─── POLICIES STRIP ────────────────────────────────── -->
+<div class="policies-strip">
+  <h3>Our Policies &amp; Legal Pages</h3>
+  <div class="policies-grid">
+    <a class="policy-card" href="terms-and-conditions.html">
+      <span class="pc-icon">📄</span>
+      <span class="pc-title">Terms &amp; Conditions</span>
+      <span class="pc-sub">Usage rules &amp; agreements</span>
+      <span class="pc-arrow">→</span>
+    </a>
+    <a class="policy-card" href="privacy-policy.html">
+      <span class="pc-icon">🔒</span>
+      <span class="pc-title">Privacy Policy</span>
+      <span class="pc-sub">Data protection details</span>
+      <span class="pc-arrow">→</span>
+    </a>
+    <a class="policy-card" href="cancellation-and-refund.html">
+      <span class="pc-icon">↩️</span>
+      <span class="pc-title">Cancellation &amp; Refund</span>
+      <span class="pc-sub">Eligibility &amp; process</span>
+      <span class="pc-arrow">→</span>
+    </a>
+    <a class="policy-card" href="shipping-and-exchange.html">
+      <span class="pc-icon">📦</span>
+      <span class="pc-title">Shipping &amp; Delivery</span>
+      <span class="pc-sub">Digital delivery timelines</span>
+      <span class="pc-arrow">→</span>
+    </a>
+    <a class="policy-card" href="contact-us.html">
+      <span class="pc-icon">✉️</span>
+      <span class="pc-title">Contact Us</span>
+      <span class="pc-sub">Get in touch with us</span>
+      <span class="pc-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<!-- ─── FOOTER ──────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="ft-brand">
+      <span class="logo-text">Coding<span style="color:var(--gold)">Services</span>.co.in</span>
+      <p>Professional online academic editing and document support services for researchers and students worldwide. All services delivered digitally.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Plagiarism Analysis</a></li>
+        <li><a href="#services">AI Detection Report</a></li>
+        <li><a href="#services">Proofreading</a></li>
+        <li><a href="#services">Formatting</a></li>
+        <li><a href="#services">Citation Correction</a></li>
+        <li><a href="#services">Language Editing</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Legal &amp; Info</h4>
+      <ul>
+        <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="cancellation-and-refund.html">Cancellation &amp; Refund</a></li>
+        <li><a href="shipping-and-exchange.html">Shipping &amp; Delivery</a></li>
+        <li><a href="contact-us.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 CodingServices.co.in — All rights reserved. Registered in India.</p>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+/* ── Hamburger ── */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.transitionDelay = (i % 4) * 0.08 + 's';
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+/* ── Nav shadow on scroll ── */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 40) {
+    nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.4)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>

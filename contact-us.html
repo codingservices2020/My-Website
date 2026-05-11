@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us – CodingServices.co.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0f1e3c; --gold:#c9a84c; --gold-light:#e8c97a; --cream:#faf8f3; --text:#2c2c2c; --muted:#6b6b6b; --border:#e2ddd4; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); line-height:1.8; }
+  nav { background:var(--navy); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:64px; position:sticky; top:0; z-index:100; box-shadow:0 2px 20px rgba(0,0,0,0.3); }
+  .logo { font-family:'Playfair Display',serif; color:var(--gold); font-size:1.25rem; font-weight:700; text-decoration:none; }
+  .nav-links { display:flex; gap:28px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:0.85rem; font-weight:500; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--gold-light); }
+  .page-hero { background:linear-gradient(135deg,var(--navy) 0%,#1a3560 100%); padding:60px 5% 50px; position:relative; overflow:hidden; }
+  .page-hero::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border:1px solid rgba(201,168,76,0.15); border-radius:50%; }
+  .breadcrumb { font-size:0.8rem; color:rgba(255,255,255,0.5); margin-bottom:12px; }
+  .breadcrumb a { color:var(--gold); text-decoration:none; }
+  .page-hero h1 { font-family:'Playfair Display',serif; color:#fff; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:700; margin-bottom:12px; }
+  .page-hero .subtitle { color:rgba(255,255,255,0.6); font-size:0.9rem; }
+  .gold-line { width:50px; height:3px; background:var(--gold); margin:16px 0; }
+
+  /* Contact layout */
+  .contact-wrap { max-width:1040px; margin:0 auto; padding:56px 5% 80px; display:grid; grid-template-columns:1fr 1.4fr; gap:48px; }
+
+  /* Info column */
+  .contact-info h2 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--navy); margin-bottom:16px; }
+  .contact-info p { font-size:0.93rem; color:var(--muted); margin-bottom:28px; }
+  .info-item { display:flex; gap:16px; margin-bottom:24px; align-items:flex-start; }
+  .info-icon { width:42px; height:42px; background:var(--navy); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .info-text strong { display:block; font-size:0.9rem; color:var(--navy); margin-bottom:3px; }
+  .info-text span, .info-text a { font-size:0.88rem; color:var(--muted); text-decoration:none; }
+  .info-text a:hover { color:var(--gold); }
+
+  .response-badge { background:#fff; border:1px solid var(--border); border-radius:8px; padding:14px 18px; margin-top:28px; font-size:0.85rem; color:var(--muted); display:flex; gap:10px; align-items:center; }
+  .response-badge strong { color:var(--navy); }
+
+  /* Form column */
+  .contact-form-wrap { background:#fff; border-radius:12px; padding:36px; box-shadow:0 4px 24px rgba(0,0,0,0.06); border:1px solid var(--border); }
+  .form-title { font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--navy); margin-bottom:24px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-group { margin-bottom:18px; }
+  .form-group label { display:block; font-size:0.82rem; font-weight:600; color:var(--navy); margin-bottom:6px; letter-spacing:0.3px; text-transform:uppercase; }
+  .form-group input, .form-group select, .form-group textarea {
+    width:100%; padding:11px 14px; border:1px solid var(--border); border-radius:6px;
+    font-family:'DM Sans',sans-serif; font-size:0.92rem; color:var(--text);
+    background:var(--cream); transition:border-color 0.2s, box-shadow 0.2s;
+    outline:none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color:var(--gold); box-shadow:0 0 0 3px rgba(201,168,76,0.12);
+  }
+  .form-group textarea { resize:vertical; min-height:110px; }
+  .submit-btn {
+    width:100%; padding:14px; background:var(--navy); color:#fff;
+    border:none; border-radius:6px; font-family:'DM Sans',sans-serif;
+    font-size:0.95rem; font-weight:600; cursor:pointer; letter-spacing:0.3px;
+    transition:background 0.2s, transform 0.1s;
+    margin-top:6px;
+  }
+  .submit-btn:hover { background:#1a3560; transform:translateY(-1px); }
+  .submit-btn:active { transform:translateY(0); }
+  .success-msg { display:none; background:#f0faf4; border:1px solid #a8d5b5; color:#2d7a4f; border-radius:6px; padding:14px 18px; font-size:0.9rem; margin-top:16px; text-align:center; }
+
+  /* Policy links */
+  .quick-links { max-width:1040px; margin:0 auto 60px; padding:0 5%; }
+  .quick-links h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--navy); margin-bottom:16px; }
+  .links-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .link-card { background:#fff; border:1px solid var(--border); border-radius:8px; padding:16px 18px; text-decoration:none; color:var(--text); transition:border-color 0.2s, box-shadow 0.2s; }
+  .link-card:hover { border-color:var(--gold); box-shadow:0 2px 12px rgba(201,168,76,0.15); }
+  .link-card .link-icon { font-size:1.2rem; margin-bottom:6px; }
+  .link-card strong { display:block; font-size:0.88rem; color:var(--navy); margin-bottom:2px; }
+  .link-card span { font-size:0.8rem; color:var(--muted); }
+
+  footer { background:var(--navy); color:rgba(255,255,255,0.6); text-align:center; padding:32px 5%; font-size:0.82rem; }
+  footer a { color:var(--gold-light); text-decoration:none; }
+  .footer-links { display:flex; gap:24px; justify-content:center; margin-bottom:16px; flex-wrap:wrap; }
+  @media(max-width:768px) { .contact-wrap { grid-template-columns:1fr; } .form-row { grid-template-columns:1fr; } .nav-links { display:none; } }
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">CodingServices.co.in</a>
+  <ul class="nav-links">
+    <li><a href="terms-and-conditions.html">Terms</a></li>
+    <li><a href="privacy-policy.html">Privacy</a></li>
+    <li><a href="cancellation-and-refund.html">Refund</a></li>
+    <li><a href="shipping-and-exchange.html">Delivery</a></li>
+    <li><a href="contact-us.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Contact Us</div>
+  <h1>Contact Us</h1>
+  <div class="gold-line"></div>
+  <p class="subtitle">We're here to help. Reach out and we'll respond promptly.</p>
+</div>
+
+<div class="contact-wrap">
+  <!-- Info -->
+  <div class="contact-info">
+    <h2>Get in Touch</h2>
+    <p>Have a question about our services, an ongoing order, or a refund request? We're available to assist international clients across all time zones.</p>
+
+    <div class="info-item">
+      <div class="info-icon">✉️</div>
+      <div class="info-text">
+        <strong>Email Support</strong>
+        <a href="mailto:support@codingservices.co.in">support@codingservices.co.in</a>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">🌐</div>
+      <div class="info-text">
+        <strong>Website</strong>
+        <a href="https://codingservices.co.in">codingservices.co.in</a>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div class="info-text">
+        <strong>Business Hours</strong>
+        <span>Monday – Saturday: 9:00 AM – 7:00 PM IST</span>
+      </div>
+    </div>
+
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div class="info-text">
+        <strong>Registered Country</strong>
+        <span>India</span>
+      </div>
+    </div>
+
+    <div class="response-badge">
+      ⚡ <div><strong>Typical response time:</strong> Within 24 business hours</div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="contact-form-wrap">
+    <div class="form-title">Send Us a Message</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="John">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="lname" placeholder="Doe">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com">
+    </div>
+    <div class="form-group">
+      <label>Subject</label>
+      <select id="subject">
+        <option value="">— Select a topic —</option>
+        <option>Order Inquiry</option>
+        <option>Refund / Cancellation Request</option>
+        <option>Revision Request</option>
+        <option>Service Information</option>
+        <option>Payment Issue</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Order ID (if applicable)</label>
+      <input type="text" id="orderid" placeholder="e.g. CS-202500001">
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="message" placeholder="Please describe your query in detail..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+    <div class="success-msg" id="successMsg">✅ Thank you! Your message has been received. We'll respond within 24 business hours.</div>
+  </div>
+</div>
+
+<!-- Quick Links -->
+<div class="quick-links">
+  <h3>Helpful Policy Pages</h3>
+  <div class="links-grid">
+    <a class="link-card" href="terms-and-conditions.html">
+      <div class="link-icon">📄</div>
+      <strong>Terms & Conditions</strong>
+      <span>Usage rules & agreements</span>
+    </a>
+    <a class="link-card" href="privacy-policy.html">
+      <div class="link-icon">🔒</div>
+      <strong>Privacy Policy</strong>
+      <span>How we protect your data</span>
+    </a>
+    <a class="link-card" href="cancellation-and-refund.html">
+      <div class="link-icon">↩️</div>
+      <strong>Cancellation & Refund</strong>
+      <span>Eligibility & process</span>
+    </a>
+    <a class="link-card" href="shipping-and-exchange.html">
+      <div class="link-icon">📦</div>
+      <strong>Shipping & Delivery</strong>
+      <span>Digital delivery timelines</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="terms-and-conditions.html">Terms & Conditions</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="cancellation-and-refund.html">Cancellation & Refund</a>
+    <a href="shipping-and-exchange.html">Shipping & Exchange</a>
+    <a href="contact-us.html">Contact Us</a>
+  </div>
+  <p>© 2025 CodingServices.co.in — All rights reserved.</p>
+</footer>
+
+<script>
+function handleSubmit() {
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!fname || !email || !message) {
+    alert('Please fill in your name, email, and message before submitting.');
+    return;
+  }
+  document.querySelector('.submit-btn').disabled = true;
+  document.querySelector('.submit-btn').textContent = 'Sending...';
+  setTimeout(() => {
+    document.getElementById('successMsg').style.display = 'block';
+    document.querySelector('.submit-btn').textContent = 'Message Sent ✓';
+  }, 900);
+}
+</script>
+</body>
+</html>
