@@ -6,12 +6,13 @@
 <title>Contact Us – CodingServices.co.in</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-  
+
+
   <style>
   :root { --navy:#0f1e3c; --gold:#c9a84c; --gold-light:#e8c97a; --cream:#faf8f3; --text:#2c2c2c; --muted:#6b6b6b; --border:#e2ddd4; }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -150,25 +151,37 @@
   </div>
 
   <!-- Form -->
-  <div class="contact-form-wrap">
-    <div class="form-title">Send Us a Message</div>
+  <!-- Form -->
+<div class="contact-form-wrap">
+  <div class="form-title">Send Us a Message</div>
+
+  <form action="https://formsubmit.co/support@codingservices.co.in" method="POST">
+
+    <!-- Hidden Settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="New Contact Form Message">
+    <input type="hidden" name="_next" value="https://codingservices.co.in/contact-us.html?success=true">
+
     <div class="form-row">
       <div class="form-group">
         <label>First Name</label>
-        <input type="text" id="fname" placeholder="John">
+        <input type="text" name="first_name" placeholder="John" required>
       </div>
+
       <div class="form-group">
         <label>Last Name</label>
-        <input type="text" id="lname" placeholder="Doe">
+        <input type="text" name="last_name" placeholder="Doe" required>
       </div>
     </div>
+
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" id="email" placeholder="you@example.com">
+      <input type="email" name="email" placeholder="you@example.com" required>
     </div>
+
     <div class="form-group">
       <label>Subject</label>
-      <select id="subject">
+      <select name="subject" required>
         <option value="">— Select a topic —</option>
         <option>Order Inquiry</option>
         <option>Refund / Cancellation Request</option>
@@ -178,17 +191,28 @@
         <option>Other</option>
       </select>
     </div>
+
     <div class="form-group">
       <label>Order ID (if applicable)</label>
-      <input type="text" id="orderid" placeholder="e.g. CS-202500001">
+      <input type="text" name="order_id" placeholder="e.g. CS-202500001">
     </div>
+
     <div class="form-group">
       <label>Message</label>
-      <textarea id="message" placeholder="Please describe your query in detail..."></textarea>
+      <textarea name="message" placeholder="Please describe your query in detail..." required></textarea>
     </div>
-    <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
-    <div class="success-msg" id="successMsg">✅ Thank you! Your message has been received. We'll respond within 24 business hours.</div>
+
+    <button type="submit" class="submit-btn">
+      Send Message →
+    </button>
+
+  </form>
+
+  <div class="success-msg" id="successMsg">
+    ✅ Thank you! Your message has been received. We'll respond within 24 business hours.
   </div>
+</div>
+
 </div>
 
 <!-- Quick Links -->
@@ -230,20 +254,8 @@
 </footer>
 
 <script>
-function handleSubmit() {
-  const fname = document.getElementById('fname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  if (!fname || !email || !message) {
-    alert('Please fill in your name, email, and message before submitting.');
-    return;
-  }
-  document.querySelector('.submit-btn').disabled = true;
-  document.querySelector('.submit-btn').textContent = 'Sending...';
-  setTimeout(() => {
-    document.getElementById('successMsg').style.display = 'block';
-    document.querySelector('.submit-btn').textContent = 'Message Sent ✓';
-  }, 900);
+if(window.location.search.includes("success=true")){
+  document.getElementById('successMsg').style.display = 'block';
 }
 </script>
 </body>
