@@ -211,7 +211,35 @@ nav {
   font-size:0.7rem; padding:2px 8px; border-radius:10px; font-weight:500;
 }
 
-/* ─── TRUST STRIP ────────────────────────────────── */
+/* ─── CONTACT CHANNELS ───────────────────────────── */
+.contact-channels-section { background:var(--white); }
+.contact-channels-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+.cc-card {
+  background:var(--cream); border:1px solid var(--border);
+  border-radius:12px; padding:32px 28px;
+  text-align:center;
+  transition:transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  position:relative; overflow:hidden;
+}
+.cc-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt));
+  transform:scaleX(0); transform-origin:left; transition:transform 0.3s;
+}
+.cc-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(11,24,48,0.10); border-color:rgba(200,168,75,0.3); }
+.cc-card:hover::before { transform:scaleX(1); }
+.cc-icon { font-size:2.2rem; margin-bottom:16px; }
+.cc-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; color:var(--navy); margin-bottom:10px; }
+.cc-card p { font-size:0.88rem; color:var(--muted); line-height:1.75; margin-bottom:18px; }
+.cc-link {
+  display:inline-block; background:var(--navy); color:var(--gold-lt);
+  padding:10px 22px; border-radius:6px; font-size:0.85rem; font-weight:600;
+  letter-spacing:0.3px; transition:background 0.2s, transform 0.15s;
+  word-break:break-all;
+}
+.cc-link:hover { background:var(--navy-light); transform:translateY(-1px); }
+
+@media(max-width:768px) { .contact-channels-grid { grid-template-columns:1fr; } }
 .trust-strip {
   background: var(--navy-mid);
   border-top:1px solid rgba(200,168,75,0.1);
@@ -439,7 +467,8 @@ footer {
 <!-- NAV -->
 <nav id="mainNav">
   <div class="logo-wrap">
-    <div class="logo-icon">CS</div>
+<!--    <div class="logo-icon">CS-->
+      <img src="https://i.postimg.cc/ZKpfZLMt/Untitled-design-(2).png" alt="logo-icon" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
     <span class="logo-text">Coding<span>Services</span>.co.in</span>
   </div>
   <ul class="nav-links">
@@ -448,7 +477,7 @@ footer {
     <li><a href="#process">Process</a></li>
     <li><a href="contact-us.html">Contact</a></li>
   </ul>
-  <a href="contact-us.html" class="nav-cta nav-links">Get Started</a>
+  <a href="#contact-channels" class="nav-cta nav-links">Get Started</a>
   <div class="hamburger" onclick="toggleMenu()" id="hamburger">
     <span></span><span></span><span></span>
   </div>
@@ -458,7 +487,7 @@ footer {
   <a href="#why-us" onclick="toggleMenu()">Why Us</a>
   <a href="#process" onclick="toggleMenu()">Process</a>
   <a href="contact-us.html">Contact</a>
-  <a href="contact-us.html" style="color:var(--gold);font-weight:600;">Get Started →</a>
+  <a href="#contact-channels" onclick="toggleMenu()" style="color:var(--gold);font-weight:600;">Get Started →</a>
 </div>
 
 <!-- ─── HERO ──────────────────────────────────────── -->
@@ -482,7 +511,7 @@ footer {
         Professional plagiarism reports, AI detection, proofreading, formatting, citation correction, and language editing — delivered digitally to international clients with precision and care.
       </p>
       <div class="hero-actions">
-        <a href="contact-us.html" class="btn-primary">Start Your Order →</a>
+        <a href="#contact-channels" class="btn-primary">Start Your Order →</a>
         <a href="#services" class="btn-outline">Explore Services</a>
       </div>
       <div class="hero-stats">
@@ -530,7 +559,8 @@ footer {
     <div class="trust-item"><span class="ti-icon">🔒</span><span><strong>Confidential</strong> — Your documents stay private</span></div>
     <div class="trust-item"><span class="ti-icon">🌍</span><span><strong>International</strong> — We serve clients globally</span></div>
     <div class="trust-item"><span class="ti-icon">⚡</span><span><strong>Fast Delivery</strong> — Express options available</span></div>
-    <div class="trust-item"><span class="ti-icon">💳</span><span><strong>Secure Payments</strong> — International gateways supported</span></div>
+    <div class="trust-item"><span class="ti-icon">💬</span><span><strong>WhatsApp</strong> — +91 7982859612</span></div>
+    <div class="trust-item"><span class="ti-icon">✉️</span><span><strong>Email</strong> — admin@codingservices.co.in</span></div>
     <div class="trust-item"><span class="ti-icon">🔄</span><span><strong>Free Revisions</strong> — Within 7 days of delivery</span></div>
   </div>
 </div>
@@ -545,37 +575,43 @@ footer {
   </div>
   <div class="services-grid">
     <div class="svc-card reveal">
-      <div class="svc-icon">🔍</div>
+<!--      <div class="svc-icon">🔍</div>-->
+        <img src="https://i.postimg.cc/sgdQ5YmG/255854200-474af164-706f-4097-8992-7bf8cf11669f.jpg" alt="Plagiarism Analysis Report" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>Plagiarism Analysis Report</h3>
       <p>Comprehensive originality analysis using industry-leading tools. Receive a detailed report identifying similarity scores and source references.</p>
       <span class="svc-tag">Delivered in 24–48 hrs</span>
     </div>
     <div class="svc-card reveal">
-      <div class="svc-icon">🤖</div>
+<!--      <div class="svc-icon">🤖</div>-->
+      <img src="https://img.magnific.com/premium-photo/ai-technology-research-analysis_612313-704.jpg" alt="AI Writing Detection Report" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>AI Writing Detection Report</h3>
       <p>Identify AI-generated content within your documents with a thorough detection report suitable for academic and editorial compliance.</p>
       <span class="svc-tag">Delivered in 24–48 hrs</span>
     </div>
     <div class="svc-card reveal">
-      <div class="svc-icon">✏️</div>
+<!--      <div class="svc-icon">✏️</div>-->
+       <img src="https://img.magnific.com/free-vector/paper-pencil-cartoon-icon-illustration-education-object-icon-concept-isolated-flat-cartoon-style_138676-2137.jpg" alt="Proofreading &amp; Editing" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>Proofreading &amp; Editing</h3>
       <p>Meticulous grammar, spelling, punctuation, and clarity correction to ensure your writing is error-free and professional.</p>
       <span class="svc-tag">2–3 Business Days</span>
     </div>
     <div class="svc-card reveal">
-      <div class="svc-icon">📐</div>
+<!--      <div class="svc-icon">📐</div>-->
+      <img src="https://img.magnific.com/premium-vector/website-blog-flat-illustration_120816-44723.jpg" alt="Formatting &amp; Layout" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>Formatting &amp; Layout</h3>
       <p>Expert formatting in APA, MLA, Chicago, IEEE, Vancouver, and more. Consistent headings, margins, tables, and figure captions.</p>
       <span class="svc-tag">2–4 Business Days</span>
     </div>
     <div class="svc-card reveal">
-      <div class="svc-icon">📚</div>
+<!--      <div class="svc-icon">📚</div>-->
+       <img src="https://img.magnific.com/premium-vector/scroll-paper-vector-icon-can-be-used-medieval-iconset_717774-141301.jpg" alt="Citation Correction" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>Citation Correction</h3>
       <p>Accurate in-text citation and reference list correction across all major citation styles to meet journal or institution standards.</p>
       <span class="svc-tag">2–4 Business Days</span>
     </div>
     <div class="svc-card reveal">
-      <div class="svc-icon">🌐</div>
+<!--      <div class="svc-icon">🌐</div>-->
+      <img src="https://img.magnific.com/premium-vector/translate-flat-illustration_120816-53808.jpg" alt="Language Editing" style="width:55px;height:55px;object-fit:contain;border-radius:10px;">
       <h3>Language Editing</h3>
       <p>Native-level English refinement for non-native authors — improving fluency, tone, academic register, and overall readability.</p>
       <span class="svc-tag">3–5 Business Days</span>
@@ -659,7 +695,7 @@ footer {
         <div class="ps-num">02</div>
         <div class="ps-content">
           <h3>Submit Your Document &amp; Pay</h3>
-          <p>Upload your document securely and complete payment through our international payment gateway. We support clients from over 50 countries.</p>
+          <p>Send your document via <strong style="color:var(--gold-lt)">Email</strong> (admin@codingservices.co.in) or <strong style="color:var(--gold-lt)">WhatsApp</strong> (+91 7982859612), then complete payment through our secure international gateway. We support clients from over 50 countries.</p>
         </div>
       </div>
       <div class="process-step reveal">
@@ -717,11 +753,52 @@ footer {
   </div>
 </section>
 
+<!-- ─── CONTACT CHANNELS ─────────────────────────────── -->
+<section class="contact-channels-section" id="contact-channels">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <span class="section-label reveal">Get in Touch</span>
+      <h2 class="section-title reveal">How to <em>Reach Us</em></h2>
+      <p class="section-sub reveal" style="margin:0 auto;">Submit your documents and inquiries through any of the channels below. Our team responds within 24 business hours.</p>
+      <div class="gold-rule reveal" style="margin:16px auto 0;"></div>
+    </div>
+    <div class="contact-channels-grid">
+      <div class="cc-card reveal">
+        <h3>
+          <img src="https://i.postimg.cc/BnkF7WJR/Screenshot-2026-05-12-064025.png" alt="Email" style="width:52px;height:52px;object-fit:contain;display:block;margin:0 auto 10px;" />
+          Email Us
+        </h3>
+        <p>Send your documents, queries, and order details directly to our support inbox. Best for detailed requests and attaching large files.</p>
+        <a href="mailto:admin@codingservices.co.in" class="cc-link">admin@codingservices.co.in</a>
+      </div>
+      <div class="cc-card reveal">
+        <div class="cc-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="36" height="36" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+        </div>
+        <h3>WhatsApp</h3>
+        <p>Reach us on WhatsApp for quick queries, document sharing, and real-time order updates. Available Mon–Sat, 9 AM – 7 PM IST.</p>
+        <a href="https://wa.me/917982859612" target="_blank" rel="noopener" class="cc-link" style="background:#25D366;">+91 7982859612</a>
+      </div>
+      <div class="cc-card reveal">
+        <h3>
+          <img src="https://i.postimg.cc/qqTS8Ztf/scan-icon.jpg" alt="Scan QR Code" style="width:52px;height:52px;object-fit:contain;display:block;margin:0 auto 10px;" />
+          Scan QR Code
+        </h3>
+<!--        <p>Scan this WhatsApp QR code directly with your phone camera or WhatsApp to start a chat instantly — no typing needed.</p>-->
+        <div style="margin-top:8px;">
+          <img src="https://i.postimg.cc/9McvvnpT/Whatsapp-QR.jpg" alt="WhatsApp QR Code" style="width:150px;height:150px;object-fit:contain;border-radius:10px;border:3px solid #25D366;display:block;margin:0 auto 12px;" />
+          <a href="https://wa.me/917982859612" target="_blank" rel="noopener" class="cc-link" style="background:#25D366;">Open WhatsApp →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── CTA ─────────────────────────────────────────── -->
 <section class="cta-section">
   <h2 class="reveal">Ready to Elevate Your <em style="color:var(--gold-lt);font-style:italic;">Document?</em></h2>
   <p class="reveal">Submit your order today and receive a professional digital deliverable within your deadline.</p>
-  <a href="contact-us.html" class="btn-primary reveal">Contact Us &amp; Get Started →</a>
+  <a href="#contact-channels" class="btn-primary reveal">Contact Us &amp; Get Started →</a>
 </section>
 
 <!-- ─── POLICIES STRIP ────────────────────────────────── -->
@@ -777,6 +854,14 @@ footer {
         <li><a href="#services">Formatting</a></li>
         <li><a href="#services">Citation Correction</a></li>
         <li><a href="#services">Language Editing</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="mailto:admin@codingservices.co.in">✉️ admin@codingservices.co.in</a></li>
+        <li><a href="https://wa.me/917982859612" target="_blank" rel="noopener">💬 WhatsApp: +91 7982859612</a></li>
+        <li><a href="contact-us.html">📝 Contact Form</a></li>
       </ul>
     </div>
     <div class="ft-col">
